@@ -1,14 +1,14 @@
 # 🐒 金陵富士康马楼百宝箱
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-name.streamlit.app)
+[![Render App](https://img.shields.io/badge/Render-Deployed-green.svg)](https://maoloujiji.onrender.com)
 
 这是一个基于Streamlit的酒店预订数据分析工具，可以自动识别和分析酒店预订数据图片，生成可视化表格和比较分析。
 
 ## 🚀 在线演示
 
-[点击这里访问在线应用](https://your-app-name.streamlit.app)
+[点击这里访问在线应用](https://maoloujiji.onrender.com)
 
-> **注意**: 云端版本使用模拟数据进行演示，因为Streamlit Cloud不支持本地OCR功能。本地版本支持完整的OCR识别功能。
+> **注意**: 云端版本使用模拟数据进行演示，因为Render不支持本地OCR功能。本地版本支持完整的OCR识别功能。
 
 ## 📸 界面预览
 
