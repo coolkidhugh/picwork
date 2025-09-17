@@ -115,14 +115,14 @@ class HotelDataExtractor:
         """返回模拟的OCR文本用于演示"""
         return """
         状态 姓名 房类 房数 定价 到达 离开 天
-        R CON25625/麦尔会展 DKN 25 520.00 12/19 18:00 12/21 12:00 2
-        R CON25625/麦尔会展 EKN 20 580.00 12/19 18:00 12/21 12:00 2
-        R CON25625/麦尔会展 JKN 30 650.00 12/19 18:00 12/21 12:00 2
-        R CON25625/麦尔会展 SKN 15 480.00 12/19 18:00 12/21 12:00 2
-        R CON25625/麦尔会展 VCKN 10 750.00 12/19 18:00 12/21 12:00 2
-        R CON25625/麦尔会展 PSA 12 600.00 12/19 18:00 12/21 12:00 2
-        R CON25625/麦尔会展 PSB 8 700.00 12/19 18:00 12/21 12:00 2
-        R CON25625/麦尔会展 DETN 5 550.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 DKN 25 520.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 EKN 20 580.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 JKN 30 650.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 SKN 15 480.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 VCKN 10 750.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 PSA 12 600.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 PSB 8 700.00 12/19 18:00 12/21 12:00 2
+        R CON25625/金陵富士康马楼百宝箱 DETN 5 550.00 12/19 18:00 12/21 12:00 2
         """
     
     def parse_booking_data(self, text: str) -> Optional[Dict]:
@@ -149,7 +149,7 @@ class HotelDataExtractor:
             
             # 基于您提供的图片描述，创建模拟数据
             # 在实际应用中，这里需要更复杂的解析逻辑
-            if 'CON25625' in text or '麦尔会展' in text:
+            if 'CON25625' in text or '金陵富士康马楼百宝箱' in text:
                 room_types = ['STS', 'STN', 'SQS', 'SQN', 'DQN', 'JKN', 'JTS', 'JTN']
                 room_counts = [32, 18, 17, 19, 14, 50, 4, 6]
                 prices = [580.00, 580.00, 520.00, 520.00, 520.00, 650.00, 750.00, 750.00]
@@ -227,7 +227,7 @@ class HotelDataExtractor:
         
         booking_type = self.determine_booking_type(data['booking_id'])
         
-        # 提取姓名（从booking_id中提取）
+        # 提取姓名（从booking_id中提取，只显示一次）
         booking_name = data['booking_id']
         
         # 处理时间格式，去掉具体时分
@@ -239,14 +239,14 @@ class HotelDataExtractor:
         for i, room_type in enumerate(data['room_types']):
             room_count = data['room_counts'][i]
             price = data['prices'][i]
-            room_details.append(f"{room_type}({price:.0f}){room_count}")
+            room_details.append((room_count, f"{room_count}{room_type}({price:.0f})"))
         
         # 按房数排序
-        room_details.sort(key=lambda x: int(x.split(')')[1]), reverse=True)
+        room_details.sort(key=lambda x: x[0], reverse=True)
+        room_details_str = "".join([detail[1] for detail in room_details])
         
         # 生成详细总结
-        room_details_str = " ".join(room_details)
-        summary = f"新增{booking_type}团队{booking_name} {arrival_date}-{departure_date} {room_details_str} 房数{data['total_rooms']} 房类{len(data['room_types'])}种 销售"
+        summary = f"新增{booking_type}团队{booking_name} {arrival_date}-{departure_date} {room_details_str} 销售"
         
         return summary
 
@@ -256,7 +256,7 @@ if __name__ == "__main__":
     
     # 测试数据 - 使用更新的房型代码
     test_data = {
-        'booking_id': 'CON25625/麦尔会展',
+        'booking_id': 'CON25625/金陵富士康马楼百宝箱',
         'room_types': ['DKN', 'EKN', 'JKN', 'SKN', 'VCKN', 'PSA', 'PSB', 'DETN'],
         'room_counts': [25, 20, 30, 15, 10, 12, 8, 5],
         'prices': [520.00, 580.00, 650.00, 480.00, 750.00, 600.00, 700.00, 550.00],
