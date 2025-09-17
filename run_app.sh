@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "启动酒店预订数据分析工具..."
+echo ""
+echo "正在检查依赖..."
+pip install -r requirements.txt
+echo ""
+echo "启动Streamlit应用..."
+streamlit run app.py
