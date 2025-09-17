@@ -9,8 +9,8 @@ from data_extractor import HotelDataExtractor
 
 # 设置页面配置
 st.set_page_config(
-    page_title="酒店预订数据分析工具",
-    page_icon="🏨",
+    page_title="金陵富士康马楼百宝箱",
+    page_icon="🐒",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -182,10 +182,10 @@ st.markdown("""
 st.markdown("""
 <div style="text-align: center; margin-bottom: 2rem;">
     <h1 style="color: #00ff00; font-family: 'Courier New', monospace; text-shadow: 0 0 10px #00ff00; border: 2px solid #00ff00; padding: 20px; border-radius: 10px; background-color: #1e1e1e;">
-        🏨 酒店预订数据分析工具
+        🐒 金陵富士康马楼百宝箱
     </h1>
     <p style="color: #00ff00; font-family: 'Courier New', monospace; margin-top: 10px;">
-        Hotel Booking Data Analysis Tool v1.0
+        Jinling Foxconn Malou Treasure Box v1.0
     </p>
 </div>
 """, unsafe_allow_html=True)
