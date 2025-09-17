@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🐒 金陵富士康马楼百宝箱
 
 [![Render App](https://img.shields.io/badge/Render-Deployed-green.svg)](https://maoloujiji.onrender.com)
@@ -140,3 +141,6 @@ streamlit run app.py
 - 确保Python版本 >= 3.8
 - 检查Tesseract是否正确安装
 - 验证所有依赖包版本兼容性
+=======
+
+>>>>>>> 5d445e019fc68d9039c2c6d13a08acaaa46d207a
