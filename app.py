@@ -271,29 +271,11 @@ with tab1:
         image = Image.open(uploaded_file)
         st.image(image, caption="上传的图片", use_column_width=True)
         
-        # 添加图片类型选择
-        st.subheader("📋 选择图片类型")
-        image_type = st.selectbox(
-            "请选择图片对应的预订类型：",
-            ["自动检测", "CON25625/麦尔会展", "CON25626/国家疾控局", "其他"],
-            help="如果自动检测不准确，请手动选择"
-        )
-        
         # 提取数据
         if st.button("分析数据", type="primary"):
             with st.spinner("正在分析图片数据..."):
                 extractor = get_data_extractor()
-                
-                # 根据用户选择设置图片类型
-                if image_type == "CON25625/麦尔会展":
-                    # 强制使用麦尔会展数据
-                    data = extractor.parse_booking_data(extractor.get_mock_ocr_text("25625"))
-                elif image_type == "CON25626/国家疾控局":
-                    # 强制使用国家疾控局数据
-                    data = extractor.parse_booking_data(extractor.get_mock_ocr_text("25626"))
-                else:
-                    # 自动检测
-                    data = extractor.extract_data_from_image(image)
+                data = extractor.extract_data_from_image(image)
                 
                 if data:
                     # 存储数据
